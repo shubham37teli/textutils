@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [text, setText] = useState("Enter here");
+  const [text, setText] = useState("");
   const [mode, setMode] = useState("light");
   const Toggle = () => {
     if (mode === "light") {
@@ -25,9 +25,7 @@ function App() {
   const handle = (event) => {
     setText(event.target.value);
   };
-  const typing = () => {
-    if (text === "Enter here") setText("");
-  };
+  
   const lower = () => {
     setText(text.toLowerCase());
   };
@@ -41,7 +39,7 @@ function App() {
         <Navbar Toggle={Toggle} />
         <div className="container my-3">
           <Routes>
-          <Route exact path="#/about" element={<About />} />
+          <Route exact path="/about" element={<About mode={mode}/>} />
             <Route
               path="/"
               element={
@@ -50,7 +48,6 @@ function App() {
                   upper={upper}
                   heading="Enter Text"
                   handle={handle}
-                  typing={typing}
                   text={text}
                   mode={mode}
                 />
